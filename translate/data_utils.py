@@ -375,15 +375,15 @@ def prepare_myown_data(data_dir, en_vocabulary_size, cn_vocabulary_size, tokeniz
   """
   # Get wmt data to the specified directory.
 #  train_path = get_wmt_enfr_train_set(data_dir)
-  dev_path = "/home/chengzhu/work/seq2seq_translation/TED.dev"
-  train_path = "/home/chengzhu/work/seq2seq_translation/TED.train"
+  #dev_path = "/home/chengzhu/work/seq2seq_translation/TED.dev"
+  #train_path = "/home/chengzhu/work/seq2seq_translation/TED.train"
 
   # Create vocabularies of the appropriate sizes.
   en_vocab_path = os.path.join(data_dir, "TED.vocab%d.en" % en_vocabulary_size)
   cn_vocab_path = os.path.join(data_dir, "TED.vocab%d.cn" % cn_vocabulary_size)
-  print("%s" % train_path)
-  create_vocabulary(en_vocab_path, train_path + ".en", en_vocabulary_size, tokenizer)
-  create_vocabulary_cn(cn_vocab_path, train_path + ".cn", cn_vocabulary_size, tokenizer)
+  
+  create_vocabulary(en_vocab_path, data_dir + "TED.train.en", en_vocabulary_size, tokenizer)
+  create_vocabulary_cn(cn_vocab_path, data_dir + "TED.train.cn", cn_vocabulary_size, tokenizer)
 
 #  fr_vocab_path = os.path.join(data_dir, "vocab%d.fr" % fr_vocabulary_size)
 #  en_vocab_path = os.path.join(data_dir, "vocab%d.en" % en_vocabulary_size)
@@ -391,10 +391,10 @@ def prepare_myown_data(data_dir, en_vocabulary_size, cn_vocabulary_size, tokeniz
 #  create_vocabulary(en_vocab_path, train_path + ".en", en_vocabulary_size, tokenizer)
 
   # Create token ids for the training data.
-  en_train_ids_path = train_path + (".ids%d.en" % en_vocabulary_size)
-  cn_train_ids_path = train_path + (".ids%d.cn" % cn_vocabulary_size)
-  data_to_token_ids(train_path + ".en", en_train_ids_path, en_vocab_path, tokenizer)
-  data_to_token_ids_cn(train_path + ".cn", cn_train_ids_path, cn_vocab_path, tokenizer)
+  en_train_ids_path = data_dir + ("TED.train.ids%d.en" % en_vocabulary_size)
+  cn_train_ids_path = data_dir + ("TED.train.ids%d.cn" % cn_vocabulary_size)
+  data_to_token_ids(data_dir + "TED.train.en", en_train_ids_path, en_vocab_path, tokenizer)
+  data_to_token_ids_cn(data_dir + "TED.train.cn", cn_train_ids_path, cn_vocab_path, tokenizer)
 
 #  fr_train_ids_path = train_path + (".ids%d.fr" % fr_vocabulary_size)
 #  en_train_ids_path = train_path + (".ids%d.en" % en_vocabulary_size)
@@ -402,10 +402,10 @@ def prepare_myown_data(data_dir, en_vocabulary_size, cn_vocabulary_size, tokeniz
 #  data_to_token_ids(train_path + ".en", en_train_ids_path, en_vocab_path, tokenizer)
 
   # Create token ids for the development data.
-  en_dev_ids_path = dev_path + (".ids%d.en" % en_vocabulary_size)
-  cn_dev_ids_path = dev_path + (".ids%d.cn" % cn_vocabulary_size)
-  data_to_token_ids(dev_path + ".en", en_dev_ids_path, en_vocab_path, tokenizer)
-  data_to_token_ids_cn(dev_path + ".cn", cn_dev_ids_path, cn_vocab_path, tokenizer)
+  en_dev_ids_path = data_dir + ("TED.dev.ids%d.en" % en_vocabulary_size)
+  cn_dev_ids_path = data_dir + ("TED.dev.ids%d.cn" % cn_vocabulary_size)
+  data_to_token_ids(data_dir + "TED.dev.en", en_dev_ids_path, en_vocab_path, tokenizer)
+  data_to_token_ids_cn(data_dir + "TED.dev.cn", cn_dev_ids_path, cn_vocab_path, tokenizer)
 
   return (en_train_ids_path, cn_train_ids_path, en_dev_ids_path, cn_dev_ids_path)
 

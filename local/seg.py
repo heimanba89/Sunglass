@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import re
+import sys
 
 # suppose all capitalized alphabet
 def generateCompactEn(enStr):
@@ -23,10 +24,14 @@ def replace(py):
             py = py.replace(en,enn)
     return py
 
-print replace(new_uu)
+#print replace(new_uu)
 
-f_cn = open("text",'r')
-seg_text = open("seg_text",'w')
+input_file = sys.argv[1]
+output_file = sys.argv[2]
+
+f_cn = open(input_file,'r')
+seg_text = open(output_file,'w')
+
 for line in f_cn:
     line = unicode(line.strip(), 'utf-8')
     line = list(line)
